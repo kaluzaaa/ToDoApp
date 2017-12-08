@@ -210,7 +210,7 @@
                     "name": "appsettings",
                     "type": "config",
                     "dependsOn": [
-                        "[resourceId('Microsoft.Web/Sites', parameters('siteName'))]",
+                        "[resourceId('Microsoft.Web/Sites', parameters('siteName'))]"
                     ],
                     "properties": {
                         "PROJECT": "src\\MultiChannelToDo.Web\\MultiChannelToDo.Web.csproj",
