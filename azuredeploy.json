@@ -69,6 +69,9 @@
         "sqlDbServiceObjectiveId": {
             "type": "string",
             "defaultValue": "dd6d99bb-f193-4ec1-86f2-43d3bccbc49c"
+        },
+        "applicationInsightKey": {
+            "type": "string"
         }
     },
     "variables": {
@@ -152,10 +155,13 @@
                     "type": "config",
                     "dependsOn": [
                         "[resourceId('Microsoft.Web/Sites', variables('apiSiteName'))]",
+                        "[resourceId('Microsoft.Sql/servers', parameters('sqlServerName'))]"
                     ],
                     "properties": {
                         "PROJECT": "src\\MultiChannelToDo\\MultiChannelToDo.csproj",
-                        "clientUrl": "[concat('http://', parameters('siteName'), '.azurewebsites.net')]"
+                        "clientUrl": "[concat('http://', parameters('siteName'), '.azurewebsites.net')]",
+                        "APPINSIGHTS_INSTRUMENTATIONKEY" : "[parameters('applicationInsightKey')]",
+                        "InstrumentationKey" : "[parameters('applicationInsightKey')]"
                     }
                 },
                 {
@@ -208,7 +214,8 @@
                     ],
                     "properties": {
                         "PROJECT": "src\\MultiChannelToDo.Web\\MultiChannelToDo.Web.csproj",
-                        "apiPath": "[concat('http://', variables('apiSiteName'), '.azurewebsites.net/api')]"
+                        "apiPath": "[concat('http://', variables('apiSiteName'), '.azurewebsites.net/api')]",
+                        "APPINSIGHTS_INSTRUMENTATIONKEY" : "[parameters('applicationInsightKey')]"
                     }
                 },
                 {
