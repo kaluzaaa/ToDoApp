@@ -183,7 +183,7 @@
                     "dependsOn": [
                         "[resourceId('Microsoft.Web/Sites', variables('apiSiteName'))]",
                         "[resourceId('Microsoft.Web/Sites/config', variables('apiSiteName'), 'appsettings')]",
-                        "[resourceId('Microsoft.Web/Sites/config', variables('apiSiteName'), 'connectionstrings')]",
+                        "[resourceId('Microsoft.Web/Sites/config', variables('apiSiteName'), 'connectionstrings')]"
                     ],
                     "properties": {
                         "RepoUrl": "[parameters('repoUrl')]",
