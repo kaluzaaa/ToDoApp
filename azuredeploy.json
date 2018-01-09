@@ -142,7 +142,7 @@
             "type": "Microsoft.Web/serverFarms",
             "location": "[parameters('siteLocation')]",
             "properties": {
-                "name": "[parameters('hostingPlanName')]",
+                "name": "[concat(parameters('hostingPlanName'),'-api')]",
                 "sku": "[parameters('sku')]",
                 "workerSize": "[parameters('workerSize')]",
                 "numberOfWorkers": 1
