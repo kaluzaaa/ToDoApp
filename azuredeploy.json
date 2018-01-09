@@ -137,16 +137,28 @@
             }
         },
         {
+            "apiVersion": "2014-11-01",
+            "name": "[concat(parameters('hostingPlanName'),'-api')]",
+            "type": "Microsoft.Web/serverFarms",
+            "location": "[parameters('siteLocation')]",
+            "properties": {
+                "name": "[parameters('hostingPlanName')]",
+                "sku": "[parameters('sku')]",
+                "workerSize": "[parameters('workerSize')]",
+                "numberOfWorkers": 1
+            }
+        },
+        {
             "apiVersion": "2015-04-01",
             "name": "[variables('apiSiteName')]",
             "type": "Microsoft.Web/sites",
             "location": "[parameters('siteLocation')]",
             "dependsOn": [
-                "[resourceId('Microsoft.Web/serverFarms', parameters('hostingPlanName'))]",
+                "[resourceId('Microsoft.Web/serverFarms', concat(parameters('hostingPlanName'),'-api'))]",
                 "[resourceId('Microsoft.Sql/servers', parameters('sqlServerName'))]"
             ],
             "properties": {
-                "serverFarmId": "[parameters('hostingPlanName')]"
+                "serverFarmId": "[concat(parameters('hostingPlanName'),'-api')]"
             },
             "resources": [
                 {
